@@ -1,100 +1,103 @@
-
- const games =  [
-    {
-      id: 1,
-      name: 'Високосний калькулятор',
-      category: 'calculator',
-    },
-    {
-      id: 2,
-      name: 'Високосний калькулятор',
-      category: 'calculator',
-    },
-    {
-      id: 3,
-      name: 'Високосний калькулятор',
-      category: 'calculator',
-    },
-    {
-      id: 4,
-      name: 'Високосний калькулятор',
-      category: 'calculator',
-    },
-    {
-      id: 5,
-      name: 'Високосний калькулятор',
-      category: 'calculator',
-    },
-    {
-      id: 6,
-      name: 'Високосний калькулятор',
-      category: 'calculator',
-    },
-    {
-      id: 7,
-      name: 'Високосний калькулятор',
-      category: 'calculator',
-    },
-    {
-      id: 8,
-      name: 'Високосний калькулятор',
-      category: 'calculator',
-    },
-    {
-      id: 9,
-      name: 'Високосний калькулятор',
-      category: 'calculator',
-    },
-    {
-      id: 10,
-      name: 'Високосний калькулятор',
-      category: 'calculator',
-    },
-    {
-      id: 11,
-      name: 'Високосний калькулятор',
-      category: 'calculator',
-    },
-    {
-      id: 12,
-      name: 'Високосний калькулятор',
-      category: 'calculator',
-    },
+const games =  [
+  {
+    id: 1,
+    name: 'Чи високосний рік',
+    category: 'calculator',
+  },
+  {
+    id: 2,
+    name: 'Високосний калькулятор',
+    category: 'calculator',
+  },
+  {
+    id: 3,
+    name: 'Чи попадає число в діапазон',
+    category: 'calculator',
+  },
+  {
+    id: 4,
+    name: 'Високосний калькулятор',
+    category: 'calculator',
+  },
+  {
+    id: 5,
+    name: 'Високосний калькулятор',
+    category: 'calculator',
+  },
+  {
+    id: 6,
+    name: 'Високосний калькулятор',
+    category: 'calculator',
+  },
+  {
+    id: 7,
+    name: 'Болонський калькулятор',
+    category: 'calculator',
+  },
+  {
+    id: 8,
+    name: 'Вичислення години',
+    category: 'calculator',
+  },
+  {
+    id: 9,
+    name: 'Камінь-Ножиці-Папір',
+    category: 'calculator',
+  },
+  {
+    id: 10,
+    name: `М'ячик в полі`,
+    category: 'calculator',
+  },
+  {
+    id: 11,
+    name: 'Хрестики-Нолики',
+    category: 'calculator',
+  },
+  {
+    id: 12,
+    name: 'Високосний калькулятор',
+    category: 'calculator',
+  },
 ]
 
 console.log(games.name);
 
 
 const createCards = function(games) {
+  const cardEl = document.createElement('li');
+  cardEl.classList = 'cards-list';
 
-    const cardEl = document.createElement('li');
-    cardEl.classList = 'cards-list';
+  const gameContainerEl = document.createElement('div');
+  gameContainerEl.classList.add('cards-container')
+  gameContainerEl.id = games.id;
 
-    const button = document.createElement('button');
-    button.classList = 'cards-button';
-    button.textContent = games.name;
+  cardEl.appendChild(gameContainerEl);
 
-    const backdropEl = document.createElement('div')
-    backdropEl.classList = 'backdrop hidden game';
+    return cardEl;
+}
 
-    const modalEl = document.createElement('div')
-    backdropEl.classList = 'modal game';
+const elements = games.map(createCards)
+
+const containerEl = document.querySelector('.interactive-cards')
+console.log(containerEl);
+containerEl.append(...elements);
 
 
-    backdropEl.append(modalEl)
 
-    cardEl.append(button, backdropEl);
+// Відкриття модалки
+ const backdropEl = document.querySelector('.backdrop')
+ const modalEl = document.querySelector('.game-modal')
 
-      return cardEl;
 
-  }
+containerEl.addEventListener('click', onModalOpen);
 
-  // console.log(createArticle(products[0]));
+function onModalOpen(e) {
+    if(e.target.nodeName !== "BUTTON"){
+      return;
+    }
 
-  const elements = games.map(createCards)
-
-  const containerEl = document.querySelector('.interactive-cards')
-
-  containerEl.append(...elements);
-
-  console.log(containerEl);
+    modalEl.setAttribute('data-modal', e.target.id)
+    backdropEl.classList.remove('is-hidden')     
+  
+}
