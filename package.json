@@ -15,7 +15,7 @@
   "author": "Alexander Repeta <alexander.repeta@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Potyomko/goiteens-project-2/issues"
+    "url": "https://github.com/Potyomko/test-project"
   },
   "dependencies": {
     "modern-normalize": "^1.1.0"
